@@ -9,7 +9,7 @@
      int x = nums[l], i = l - 1, j = r + 1;
      while (i < j) {
          do i++; while (nums[i] < x);
-         do j++; while (nums[j] > x);
+         do j--; while (nums[j] > x);
          if (i < j) swap(nums, i, j);
      }
      quickSort(nums, l, j);
