@@ -51,6 +51,7 @@ else r = mid - 1;
 return l;
 ```
 * 浮点数二分模板
+
 技巧：题目精度要求e-4，一般比题目要求高两位e-6
 ```java
 double eps = 1e-6;
