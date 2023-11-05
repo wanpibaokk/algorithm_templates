@@ -51,7 +51,7 @@ else r = mid - 1;
 return l;
 ```
 * 浮点数二分模板
-* 技巧：题目精度要求e-4，一般比题目要求高两位e-6
+技巧：题目精度要求e-4，一般比题目要求高两位e-6
 ```java
 double eps = 1e-6;
 while (r - l > eps) {
@@ -62,13 +62,12 @@ else l = mid;
 return l;
 ```
 * 高精度：由于数字位数过多超过了一般数据类型可存的长度
-* 一般使用数组来高精度的表示这个超长的数字
-* 主要涉及四类情况：
-* 高精度加法：两个高精度数字相加
-* 高精度减法：两个高精度数字相减
-* 高精度乘低精度：一个用数组表示，一个用int表示
-* 高精度除以低精度：一个用数组表示，一个用int表示
-*
+一般使用数组来高精度的表示这个超长的数字
+主要涉及四类情况：
+高精度加法：两个高精度数字相加
+高精度减法：两个高精度数字相减
+高精度乘低精度：一个用数组表示，一个用int表示
+高精度除以低精度：一个用数组表示，一个用int表示
 * 高精度加法
 ```java
 List<Integer> add(List<Integer> A, List<Integer> B) {
@@ -84,6 +83,8 @@ List<Integer> add(List<Integer> A, List<Integer> B) {
 }
 ```
 * 高精度减法
+先判断AB谁更大，模板默认 A > B > 0
+结果可能存在前导零  123 - 120 = 003
 ```java
 boolean cmp(List<Integer> A, List<Integer> B) {
     int n = A.size(), m = B.size();
@@ -95,10 +96,7 @@ boolean cmp(List<Integer> A, List<Integer> B) {
     }
     return true;
 }
-```
-* 先判断AB谁更大，模板默认 A > B > 0
-* 结果可能存在前导零  123 - 120 = 003
-```java
+
 List<Integer> sub(List<Integer> A, List<Integer> B) {
     int n = A.size(), m = B.size();
     List<Integer> C = new ArrayList<>();
@@ -126,9 +124,9 @@ List<Integer> mul(List<Integer> A, int b) {
 }
 ```
 * 高精度除以低精度
-* 结果可能存在前导零，并且要注意结果顺序和另外三种情况相反
-* r为余数，初始为0
-* java是值传递，所以余数不好返回，做题直接写在main处理
+结果可能存在前导零，并且要注意结果顺序和另外三种情况相反
+r为余数，初始为0
+java是值传递，所以余数不好返回，做题直接写在main处理
 ```java
 List<Integer> div(List<Integer> A, int b, int r) {
     int n = A.size();
@@ -141,7 +139,6 @@ List<Integer> div(List<Integer> A, int b, int r) {
 }
 ```
 * 前缀和（一维、二维）、差分（一维和二维）
-*
 * 一维前缀和
 ```java
 int[] sum = new int[n + 1];
@@ -163,7 +160,6 @@ int[] diff = new int[n + 1];
 diff[l] += c;
 diff[r + 1] -= c;
 ```
-
 * 二维差分
 ```java
 int[][] diff = new int[n + 5][m + 5]
@@ -185,9 +181,9 @@ return x & (-x);
 x &= (x - 1) 消去最后的1
 
 * 离散化
-* 特点：范围很大，但是值很稀疏
-* 由于范围很大，无法直接创建那么大的数组，所以需要离散化，将值映射到更小的范围
-* 思路：去重，排序。然后通过二分找到位置，位置即为离散化后的值。
+特点：范围很大，但是值很稀疏
+由于范围很大，无法直接创建那么大的数组，所以需要离散化，将值映射到更小的范围
+思路：去重，排序。然后通过二分找到位置，位置即为离散化后的值。
 ```java
 list = new ArrayList<>(new HashSet<>(list));
 Collections.sort(list);
